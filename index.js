@@ -294,7 +294,7 @@ export default async function (ctx) {
   const T = {"k": "#08040e", "k2": "#120a1e", "fill": "#1e1230", "fillOn": "#2a1a42", "hl": "#3a2658", "line": "#5e4d85", "acc": "#b98aff", "accL": "#ecdcff", "accS": "#8a5cf0", "accD": "#2a1650", "rivet": "#ecdcff", "btn": "#3a2658", "btnHi": "#6a5a96", "btnLo": "#120a1e", "btnHov": "#4a3270", "btnHovHi": "#8a78b8", "text": "#f6f0ff", "muted": "#c4b8dc", "acc2": "#ff5ad9", "gold": "#ffd84a", "orange": "#ff9a3c", "red": "#ff4a5a", "green": "#7ee07a", "green2": "#2f8a3a", "bg": "#0c0716", "bgDot": "#1e1230", "bgDot2": "#120a1e", "spark": "#3a2658", "spark2": "#ff5ad9",
     "tile": ["................", "...:............", "................", "..........+.....", "................", "................", ".....:..........", "................", "................", ".............:..", "................", "..+.............", "................", ".........:......", "................", "................"]};
   pxSkin(view.querySelector('.appWrap'), { title: "MÉMOIRE", T,
-    emblem: ["kkkkk.kkkkk.", "kaaak.kwwwk.", "kakak.kwpwk.", "kaaak.kwwwk.", "kkkkk.kkkkk.", "............", "kkkkk.kkkkk.", "kwwwk.kaaak.", "kwpwk.kakak.", "kwwwk.kaaak.", "kkkkk.kkkkk.", "............"],
+    emblem: ["kkkkk.kkkkk.", "kaaak.kwwwk.", "kakak.kwbwk.", "kaaak.kwwwk.", "kkkkk.kkkkk.", "............", "kkkkk.kkkkk.", "kwwwk.kaaak.", "kwbwk.kakak.", "kwwwk.kaaak.", "kkkkk.kkkkk.", "............"],
     icons: [[/^NOUVELLE/, "play"], [/^RECORDS/, "crown"]] });
   const $ = id => view.querySelector('#' + id) || document.getElementById(id);
   const doc = async n => { try { return await folder.read(n); } catch { return null; } };
