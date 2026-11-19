@@ -21,7 +21,6 @@
  "Plateau de cartes": "Card board",
  "RECORDS": "RECORDS",
  "Record": "Record",
- "Records.": "Records.",
  "Retourne deux cartes : si les logos sont pareils, la paire reste visible. Sinon, elles se recachent : retiens où elles étaient.": "Turn two cards over: if the logos match, the pair stays face up. If not, they hide again: remember where they were.",
  "Retrouve les paires de logos en un minimum de coups.": "Find the pairs of logos in as few moves as possible.",
  "Taille": "Size",
@@ -80,5 +79,6 @@
  "CLIC OU ENTRÉE : REJOUER": "CLICK OR ENTER: PLAY AGAIN",
  "Enter": "Enter",
  "serré": "tight",
- "mémoire": "memory"
+ "mémoire": "memory",
+ "Rien n'est synchronisé : tes records restent sur cet appareil.": "Nothing is synced: your records stay on this device."
 }
