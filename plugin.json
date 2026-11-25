@@ -1,7 +1,7 @@
 {
   "id": "neodex.memoire",
   "name": "Mémoire",
-  "version": "1.2.1",
+  "version": "1.3.0",
   "author": "NDesumeur",
   "description": "Le jeu de mémoire avec les logos de NeoDex : retourne les cartes deux par deux et retrouve toutes les paires en un minimum de coups. De 6 à 24 paires, logos tirés au hasard à chaque partie, chrono, et record de coups pour chaque taille. Pixel art : cartes au dos décoré qui se retournent pour de vrai, plateau à la taille de l'écran, plein écran, clavier et manette.",
   "icon": "icon.png",
@@ -10,7 +10,10 @@
   "neobase": ">=4.0.0",
   "type": "app",
   "category": "Jeux",
-  "compatibility": ["windows", "linux"],
+  "compatibility": [
+    "windows",
+    "linux"
+  ],
   "syncMode": "aucune",
   "syncInfo": "Rien n'est synchronisé : tes records restent sur cet appareil.",
   "mobile": false,
@@ -19,5 +22,86 @@
   "sdk": "2.1.0",
   "permissions": [
     "storage"
+  ],
+  "succes": [
+    {
+      "id": "premier",
+      "nom": "Bonne mémoire",
+      "texte": "Retrouver toutes les paires une première fois"
+    },
+    {
+      "id": "p12",
+      "nom": "Concentration",
+      "texte": "Gagner en Difficile (12 paires)"
+    },
+    {
+      "id": "p18",
+      "nom": "Mémoire d'expert",
+      "texte": "Gagner en Expert (18 paires)"
+    },
+    {
+      "id": "p24",
+      "nom": "Mémoire de maître",
+      "texte": "Gagner en Maître (24 paires)"
+    },
+    {
+      "id": "elephant",
+      "nom": "Mémoire d'éléphant",
+      "texte": "Gagner en Normal en 12 coups au plus"
+    },
+    {
+      "id": "vif",
+      "nom": "Coup d'œil",
+      "texte": "Gagner en Normal en moins de 45 secondes"
+    },
+    {
+      "id": "cinquante",
+      "nom": "Infatigable",
+      "texte": "Gagner 50 parties"
+    },
+    {
+      "id": "parfait",
+      "nom": "Sans une erreur",
+      "texte": "Gagner sans jamais retourner une mauvaise paire",
+      "cache": true
+    }
+  ],
+  "records": [
+    {
+      "id": "coups8",
+      "nom": "Normal (coups)",
+      "sens": "bas",
+      "format": "nombre"
+    },
+    {
+      "id": "temps8",
+      "nom": "Normal (temps)",
+      "sens": "bas",
+      "format": "temps"
+    },
+    {
+      "id": "coups12",
+      "nom": "Difficile (coups)",
+      "sens": "bas",
+      "format": "nombre"
+    },
+    {
+      "id": "temps12",
+      "nom": "Difficile (temps)",
+      "sens": "bas",
+      "format": "temps"
+    },
+    {
+      "id": "coups18",
+      "nom": "Expert (coups)",
+      "sens": "bas",
+      "format": "nombre"
+    },
+    {
+      "id": "temps18",
+      "nom": "Expert (temps)",
+      "sens": "bas",
+      "format": "temps"
+    }
   ]
 }

@@ -308,6 +308,9 @@ export default async function (ctx) {
   const saveGames = () => { clearTimeout(gamesTimer); gamesTimer = setTimeout(() => { gamesTimer = null; folder.write('games', games).catch(() => {}); }, 500); };
   const best = (k, v) => { const b = games.best[k]; if (b == null || v < b) { games.best[k] = v; saveGames(); return true; } return false; };  // ici, moins c'est mieux
   const gstore = (k, init) => (games[k] ??= init);
+  // les trophées de NeoDex (3.4.8 et plus) : succès et records déclarés dans plugin.json ; sur un NeoDex plus ancien, rien ne se passe
+  const trophy = id => { ctx.games?.unlock(id).catch(() => {}); };
+  const trophyRecord = (id, v) => { if (v != null && Number.isFinite(+v)) ctx.games?.record(id, +v).catch(() => {}); };
 function gameLoop(st, update, draw) {
   cancelAnimationFrame(st.raf);
   const STEP = 1000 / 60; let acc = 0, last = performance.now();
@@ -387,7 +390,7 @@ function mmUpdate() {
       if (mm.cards.every(c => c.done)) {
         mm.mode = 'won'; mm.end = performance.now(); const secs = Math.round((mm.end - mm.t0) / 1000), st = gstore('wins', {});
         st[mm.pairs] = (st[mm.pairs] || 0) + 1; saveGames();
-        const r1 = best('memory' + mm.pairs, mm.moves), r2 = best('memoryT' + mm.pairs, secs); mm.rec = r1 || r2;
+        const r1 = best('memory' + mm.pairs, mm.moves), r2 = best('memoryT' + mm.pairs, secs); mm.rec = r1 || r2; mmTrophies();
         [523, 659, 784, 1047].forEach((f, k) => beep(f, .16, 'triangle', 0, .06, .25 + k * .12));
         mmInfo();
       }
@@ -476,6 +479,14 @@ function mmCheck() {  // vérification : chaque taille tient dans le plateau san
 }
 console.assert(mmCheck() === 'ok', 'mémoire', mmCheck());
 cv.__mm = { st: () => mm, check: mmCheck, lay: mmLay, flip: i => mmFlip(i), size: s => { $('mmSize').value = s; mmNew(); } };
-ctx.onOpen(() => { if (!mm) mmNew(); gameLoop(LP, mmUpdate, mmDraw); mmInfo(); });
+// les trophées, tirés des statistiques et des records gardés (aussi à l'ouverture : ce qui a été fait avant compte)
+function mmTrophies() {
+  const b = games.best, w = games.wins || {}, n = Object.values(w).reduce((a, v) => a + v, 0), won = p => w[p] > 0;
+  for (const p of [8, 12, 18]) { trophyRecord('coups' + p, b['memory' + p]); trophyRecord('temps' + p, b['memoryT' + p]); }
+  if (n >= 1) trophy('premier'); if (won(12)) trophy('p12'); if (won(18)) trophy('p18'); if (won(24)) trophy('p24');
+  if (b.memory8 <= 12) trophy('elephant'); if (b.memoryT8 < 45) trophy('vif'); if (n >= 50) trophy('cinquante');
+  if (Object.keys(w).some(p => b['memory' + p] === +p)) trophy('parfait');
+}
+ctx.onOpen(() => { if (!mm) mmNew(); gameLoop(LP, mmUpdate, mmDraw); mmInfo(); mmTrophies(); });
 
 }
